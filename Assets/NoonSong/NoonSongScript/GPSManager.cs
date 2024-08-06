@@ -74,7 +74,7 @@ public class GPSManager : MonoBehaviour
                 double remainDistance = distance(myLat, myLong, lats[currentIndex], longs[currentIndex]);
 
                 // 지정된 거리 내에 도착하면
-                if (remainDistance <= 1f) // 1m
+                if (remainDistance <= 100f) // 1m
                 {
                     isVisited[currentIndex] = true; // 방문 여부를 true로 설정
                     TriggerDialog(currentIndex); // 해당 위치의 다이얼로그 호출

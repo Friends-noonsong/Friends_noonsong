@@ -1588,11 +1588,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVisited: 00000000
   lats:
-  - 37.563491314102
+  - 37.480314
   - 37.545222
   - 37.545081
   longs:
-  - 126.96987163675
+  - 127.059028
   - 126.965042
   - 126.965059
   talkDialog: {fileID: 222053710}
