@@ -6,8 +6,7 @@ using Doublsb.Dialog;
 public class TalkDialog : MonoBehaviour
 {
     public DialogManager DialogManager;
-
-    public GameObject[] Animation; // 애니메이션을 위한 게임 오브젝트 배열
+    public Animator noonDungAnimator; // NoonDung 오브젝트의 Animator
     public GameObject MovingObject; // 좌측 상단에 있는 3D 오브젝트
     public Transform arCamera; // AR 카메라 Transform
     public float moveDuration = 2f; // 이동 애니메이션 지속 시간
@@ -15,6 +14,7 @@ public class TalkDialog : MonoBehaviour
     private Vector3 startPos;
     private Vector3 endPos;
     private float elapsedTime = 0f;
+    private bool isMoving = false;
 
     // 첫 번째 대화 설정
     private void FirstDialog()
@@ -23,11 +23,11 @@ public class TalkDialog : MonoBehaviour
 
         FirstDialog.Add(new DialogData("/color:black/숙명여대에 갓 입학한 새송이는 학교 탐방을 오게 되었다!"));
         FirstDialog.Add(new DialogData("/color:black/그런데 어쩌지? 학교가 너무 복잡해!"));
-        FirstDialog.Add(new DialogData("/color:black/[학교가 너무 처음이라 막막하네...]", "User", () => StartCoroutine(NoonDungComing(0)))); // 버튼 클릭 시 이동 및 애니메이션 실행
-        FirstDialog.Add(new DialogData("/color:black//wait:0.5/안녕, 친구야! 혹시 무슨 고민 있어?", "NoonDung"));
+        FirstDialog.Add(new DialogData("/color:black/[학교가 너무 처음이라 막막하네...]", "User", () => StartCoroutine(NoonDungComing()))); // 애니메이션 실행 및 대사 출력
+        FirstDialog.Add(new DialogData("/color:black//wait:0.5/안녕, 친구야! 혹시 무슨 고민 있어?", "NoonDung", () => ChangeAnimation("fast")));
         FirstDialog.Add(new DialogData("/color:black/[(사정을 설명한다.)]", "User"));
-        FirstDialog.Add(new DialogData("/color:black/아하, 아직 학교가 처음이라 모르는 게 많다고? 음.. 어디보자~", "NoonDung"));
-        FirstDialog.Add(new DialogData("/color:black/그렇지! 숙명여대라면 역시 눈송이! 그 애가 널 도와줄 수 있을 거야!", "NoonDung"));
+        FirstDialog.Add(new DialogData("/color:black/아하, 아직 학교가 처음이라 모르는 게 많다고? 음.. 어디보자~", "NoonDung", () => ChangeAnimation("stand")));
+        FirstDialog.Add(new DialogData("/color:black/그렇지! 숙명여대라면 역시 눈송이! 그 애가 널 도와줄 수 있을 거야!", "NoonDung", () => ChangeAnimation("move")));
         FirstDialog.Add(new DialogData("/color:black/같이 학교를 돌아다니면서 /color:blue/눈송이/color:black/가 어디에 있는지 찾아보자!/wait:1//close/", "NoonDung"));
         FirstDialog.Add(new DialogData("/color:black//wait:1/[저기 하늘에 떠 다니는 건 뭐지?]", "User"));
         FirstDialog.Add(new DialogData("/color:black/어디? 어디?", "NoonDung"));
@@ -41,7 +41,7 @@ public class TalkDialog : MonoBehaviour
         FirstDialog.Add(new DialogData("/color:black//wait:1/앗! 찾았다", "RoRo"));
         FirstDialog.Add(new DialogData("/color:black/[앗!]", "User"));
         FirstDialog.Add(new DialogData("/color:black/네가 눈송이를 찾아 다닌다는 새송이 맞지! 소식을 듣고 한달음에 달려왔어!", "RoRo"));
-        FirstDialog.Add(new DialogData("/color:black/로로잖아! 과연 학교의 소식통이라 그런지, 소식이 빠르네!", "NoonDung"));
+        FirstDialog.Add(new DialogData("/color:black/로로잖아! 과연 학교의 소식통이라 그런지, 소식이 빠르네!", "NoonDung", () => ChangeAnimation("Surprised")));
         FirstDialog.Add(new DialogData("/color:black//emote:Happy/히히, 1캠퍼스 정문에서 눈송이를 본 것 같다는 걸 알려주려고! 새송이가 누군지 궁금하기도 했고!", "RoRo"));
         FirstDialog.Add(new DialogData("/color:black//emote:Call/아직 학교 지리는 잘 모르지? 내가 같이 가줄게!", "RoRo"));
 
@@ -72,12 +72,12 @@ public class TalkDialog : MonoBehaviour
         FirstDialog();
     }
 
-    private void Show_Animation(int index)
+    private void ChangeAnimation(string trigger)
     {
-        Animation[index].SetActive(true);
+        noonDungAnimator.SetTrigger(trigger); // 애니메이션 트리거 설정
     }
 
-    private IEnumerator NoonDungComing(int index)
+    private IEnumerator NoonDungComing()
     {
         // 시작 위치와 끝 위치 설정
         Vector3 startPos = arCamera.TransformPoint(new Vector3(-1.5f, 1.5f, 5f)); // AR 카메라의 좌측 상단 (화면 좌표계)
@@ -98,5 +98,8 @@ public class TalkDialog : MonoBehaviour
 
         // 정확한 최종 위치로 설정
         MovingObject.transform.position = endPos;
+
+        // 이동이 완료된 후 다음 대화로 넘어가기
+        DialogManager.Click_Window(); // 다음 대사로 넘어가기 위해 Click_Window 메서드 호출
     }
 }
