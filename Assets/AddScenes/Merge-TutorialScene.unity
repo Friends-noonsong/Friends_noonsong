@@ -807,7 +807,7 @@ Animator:
   m_GameObject: {fileID: 331583889}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bd4fa91798b6b71428e7e8d93c0ab28d, type: 2}
+  m_Controller: {fileID: 9100000, guid: b56334f577a2ba54da1a102429febd8e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1829,7 +1829,7 @@ Transform:
   m_GameObject: {fileID: 887729134}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 720, y: 1698.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2674,6 +2674,60 @@ Texture2D:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2115371967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115371969}
+  - component: {fileID: 2115371968}
+  m_Layer: 0
+  m_Name: GPSManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2115371968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115371967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af7eefbf1b08224ba6d1049fc14f8c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVisited: 00000000
+  lats:
+  - 37.5454
+  - 37.5469
+  - 37.54536
+  longs:
+  - 126.9646
+  - 126.9644
+  - 126.96501
+  talkDialog: {fileID: 222053708}
+--- !u!4 &2115371969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115371967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1006236661620838
 GameObject:
   m_ObjectHideFlags: 0
@@ -12678,3 +12732,4 @@ SceneRoots:
   - {fileID: 318022036}
   - {fileID: 222053709}
   - {fileID: 887729135}
+  - {fileID: 2115371969}
