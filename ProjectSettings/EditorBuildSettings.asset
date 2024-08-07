@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/AddScenes/dayeon-TutorialScene.unity
     guid: d862b0502b9e9834da188a6f42714e97
-  - enabled: 1
+  - enabled: 0
     path: Assets/AddScenes/LoginScene.unity
     guid: 57795e569a5aa094c9f361b49dc80d93
-  - enabled: 1
+  - enabled: 0
     path: Assets/AddScenes/MainScene.unity
     guid: 99361579121e2a54d9ab83e6dd7f2273
+  - enabled: 1
+    path: Assets/AddScenes/Merge-TutorialScene.unity
+    guid: 4b07323ad80cbac4fa1a7dfc0a51ce7b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6790528e3652b144cacacd786d7fa902, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: e2223b886ac693f46b60f548306f1d2b, type: 2}
