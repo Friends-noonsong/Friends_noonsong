@@ -1588,11 +1588,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVisited: 00000000
   lats:
-  - 37.480314
+  - 37.563491314102
   - 37.545222
   - 37.545081
   longs:
-  - 127.059028
+  - 126.96987163675
   - 126.965042
   - 126.965059
   talkDialog: {fileID: 222053710}
@@ -3512,14 +3512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6c9235e73bea042bda6b2c0539ad63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ARCamera: {fileID: 20563868894212208}
-  m_PlaneDetection: 1
-  m_LightEstimation: 0
-  m_PointCloud: 1
-  m_BackgroundRendering: 1
-  m_Scale: 1
-  pointOfInterest: {x: 0, y: 0, z: 0}
-  m_SendVideo: 1
 --- !u!114 &114501080036608806
 MonoBehaviour:
   m_ObjectHideFlags: 0
