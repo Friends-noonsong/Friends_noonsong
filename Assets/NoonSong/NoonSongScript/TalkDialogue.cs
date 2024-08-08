@@ -27,9 +27,16 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     public Transform arCamera; // AR 카메라 Transform
     public float moveDuration = 2f; // 이동 애니메이션 지속 시간
 
-    // 첫 번째 대화 설정
-    private void FirstDialog()
+    public bool[] dialogTriggered = new bool[4]; // 다이얼로그가 호출되었는지 여부를 저장
+
+    // 첫 번째 대화 설정 1~3
+    public void FirstDialog()
     {
+        if (dialogTriggered[0]) return;
+
+        dialogTriggered[0] = true;
+
+
         var FirstDialog = new List<DialogData>();
 
         // part1 눈덩이 등장
@@ -63,8 +70,13 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     }
 
     // 4
-    private void SecondDialog()
+    public void SecondDialog()
     {
+        if (dialogTriggered[1]) return;
+        if (!dialogTriggered[0]) return; // 이전 다이얼로그가 호출되지 않았으면 return
+
+        dialogTriggered[1] = true;
+
         var SecondDialog = new List<DialogData>();
 
         // part4 눈결이 등장
@@ -84,8 +96,13 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     }
 
     // 5
-    private void ThirdDialog()
+    public void ThirdDialog()
     {
+        if (dialogTriggered[2]) return;
+        if (!dialogTriggered[1]) return; // 이전 다이얼로그가 호출되지 않았으면 return
+
+        dialogTriggered[2] = true;
+
         var ThirdDialog = new List<DialogData>();
 
         // part5 꽃송이 등장
@@ -94,10 +111,56 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         ThirdDialog.Add(new DialogData("/color:black/눈송이? 너희 눈송이를 찾고 있니?", "Kkotsong"));
         ThirdDialog.Add(new DialogData("/color:black/맞아요. 새송이가 눈송이와 친구가 되고 싶대요.", "RoRo"));
         ThirdDialog.Add(new DialogData("/color:black/그렇다면 정확히 찾아 왔어. 마침 방금 전까지 눈소이랑 함께 있던 참이었거든.", "Kkotsong"));
-        ThirdDialog.Add(new DialogData("/color:black/아마 눈송이는 프라임관에 있을 거야! 어딘지 아니? 같이 가 줄게.", "Kkotsong"));
+        ThirdDialog.Add(new DialogData("/color:black/아마 눈송이는 /color:blue/프라임관/color:black/에 있을 거야! 어딘지 아니? 같이 가 줄게.", "Kkotsong"));
 
         DialogManager.Show(ThirdDialog);
     }
+
+    // 6~7
+    public void ForthDialog()
+    {
+        if (dialogTriggered[3]) return;
+        if (!dialogTriggered[2]) return; // 이전 다이얼로그가 호출되지 않았으면 return
+
+        dialogTriggered[3] = true;
+
+        var ForthDialog = new List<DialogData>();
+
+        ForthDialog.Add(new DialogData("/color:black/찾았다, 눈송이!", "Kkotsong"));
+        ForthDialog.Add(new DialogData("/color:black/안녕, 친구들! 어라, 처음 보는 친구도 있네?", "NoonSong"));
+        ForthDialog.Add(new DialogData("/color:black/이 애가 너와 친구가 되고 싶다고 해서 데려왔어!", "NoonDung"));
+        ForthDialog.Add(new DialogData("/color:black/눈송이를 위한 선물도 가져왔어! (두근두근…!)", "Snowflake"));
+        ForthDialog.Add(new DialogData("/color:black/와아, 눈의 결정이네! 정말 기뻐!", "NoonSong"));
+        ForthDialog.Add(new DialogData("/color:black/이렇게 찾아와 줘서 고마워, 그럼 우리 오늘부터 친구 하자!", "NoonSong"));
+        ForthDialog.Add(new DialogData("/color:black/[(눈송이와 친구가 되자.)]"));
+        ForthDialog.Add(new DialogData("/color:black/앗-! 다들 나만 빼고 여기 모여 있었구나!", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/어라? 못 보던 얼굴도 있네?", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/[(인사한다.)]", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/안녕, 튜리! 이 애는 새로운 눈송이인데, 나랑 친구가 되고 싶다고 찾아와 줬어!", "NoonSong"));
+        ForthDialog.Add(new DialogData("/color:black/오… 이해했어!", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/거기 눈송, 좀 더 다양한 눈송이를 만나보고 싶지 않아?", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/[(고개를 끄덕인다.)]", "User"));
+        ForthDialog.Add(new DialogData("/color:black/흐흥, 미래 산업시대의 선구자가 될 이 튜리님에게 너 같은 친구들을 위한 발명품이 있지!", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/바로 /color:blue/특별한 눈의 결정/color:black/! 특별한 눈송이들의 마음도 사로잡을 수 있는 대단한 아이템이야!", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/어때? 가지고 싶지? 그 대신, 특별한 눈의 결정을 만들기 위해서는 눈의 결정이 많이 필요해.", "Turi"));
+        ForthDialog.Add(new DialogData("/color:blue/제2캠퍼스 원형 광장/color:black/에 있는 내 연구실에 오면 다양한 특별한 눈의 결정으로 바꿔줄게! 잊지 말고 놀러 와~!", "Turi"));
+        ForthDialog.Add(new DialogData("/color:black/튜토리얼을 성공적으로 마친 당신에게 이것을 드립니다!"));
+        ForthDialog.Add(new DialogData("/color:black/다양한 눈송이들과 친구가 되어 완벽한 학생증을 완성하는 것을 목표로 힘을 내 봐요!"));
+        ForthDialog.Add(new DialogData("/color:black/도감을 다 채우고 학생증을 완성한다면, 특별한 선물이 있을 지도…!?"));
+
+        DialogManager.Show(ForthDialog);
+    }
+
+    // 다이얼로그가 호출되었는지 여부를 반환 (차례대로 호출되어야 함)
+    public bool IsDialogTriggered(int index)
+    {
+        if (index >= 0 && index < dialogTriggered.Length)
+        {
+            return dialogTriggered[index];
+        }
+        return false;
+    }
+
 
     private void Start()
     {
