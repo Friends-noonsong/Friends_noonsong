@@ -1,4 +1,4 @@
-﻿/*
+/*
 The MIT License
 
 Copyright (c) 2020 DoublSB
@@ -207,7 +207,7 @@ namespace Doublsb.Dialog
         //================================================
         //Private Variable
         //================================================
-        public string DefaultSize = "50";
+        public string DefaultSize = "40";
         private string _defaultColor = "black";
 
         private string _color;

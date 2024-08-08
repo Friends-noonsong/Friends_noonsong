@@ -30,7 +30,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     private float elapsedTime = 0f;
     private bool isMoving = false;
 
-    // 첫 번째 대화 데이터 순서
+    // 1,2,3
     private void FirstDialog()
     {
         var FirstDialog = new List<DialogData>();
@@ -65,7 +65,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         DialogManager.Show(FirstDialog);
     }
 
-    // 첫 번째 대화 데이터 순서
+    // 4
     private void SecondDialog()
     {
         var SecondDialog = new List<DialogData>();
@@ -84,6 +84,22 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         SecondDialog.Add(new DialogData("2캠퍼스 정문으로 가보자!", "RoRo"));
 
         DialogManager.Show(SecondDialog);
+    }
+
+    // 5
+    private void ThirdDialog()
+    {
+        var ThirdDialog = new List<DialogData>();
+
+        // part5 꽃송이 등장
+        ThirdDialog.Add(new DialogData("안녕, 친구들? 처음 보는 친구도 있구나! 새송이인가 보네?", "Kkotsong"));
+        ThirdDialog.Add(new DialogData("이 친구는 꽃송이야! 눈송이의 베프인 꽃송이라면 눈송이가 어디 있는지 알 지도 몰라!", "RoRo"));
+        ThirdDialog.Add(new DialogData("눈송이? 너희 눈송이를 찾고 있니?", "Kkotsong"));
+        ThirdDialog.Add(new DialogData("맞아요. 새송이가 눈송이와 친구가 되고 싶대요.", "RoRo"));
+        ThirdDialog.Add(new DialogData("그렇다면 정확히 찾아 왔어. 마침 방금 전까지 눈소이랑 함께 있던 참이었거든.", "Kkotsong"));
+        ThirdDialog.Add(new DialogData("아마 눈송이는 프라임관에 있을 거야! 어딘지 아니? 같이 가 줄게.", "Kkotsong"));
+
+        DialogManager.Show(ThirdDialog);
     }
 
     private void Start()
