@@ -33,6 +33,19 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
 
     public bool[] dialogTriggered = new bool[4]; // 다이얼로그가 호출되었는지 여부를 저장
 
+    // 효과음 오디오 클립
+    public AudioClip noonDungSound;
+    public AudioClip snowflakeSound;
+    public AudioClip roroSound;
+    public AudioClip noonkyeolSound;
+    public AudioClip kkotsongSound;
+    public AudioClip noonsongSound;
+    public AudioClip turiSound;
+
+    // 각 오브젝트에 대한 사운드 매핑
+    private Dictionary<GameObject, AudioClip> objectSoundMap;
+
+
     // 첫 번째 대화 설정 1~3
     public void FirstDialog()
     {
@@ -217,6 +230,18 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         //StartCoroutine(MoveObject(noonsong, arCamera.TransformPoint(new Vector3(-1f, -0.5f, 2f)), arCamera.TransformPoint(new Vector3(0f, -0.5f, 2f)))); // 화면 좌측에서 등장 눈송이 시작
         //StartCoroutine(MoveObject(turi, arCamera.TransformPoint(new Vector3(0f, -2f, 2f)), arCamera.TransformPoint(new Vector3(0f, 0f, 2f)))); // 아래에서 등장 튜리 시작
 
+        // 오브젝트와 사운드를 매핑
+        objectSoundMap = new Dictionary<GameObject, AudioClip>
+        {
+            { noonDung, noonDungSound },
+            { snowflake, snowflakeSound },
+            { roro, roroSound },
+            { noonkyeol, noonkyeolSound },
+            { kkotsong, kkotsongSound },
+            { noonsong, noonsongSound },
+            { turi, turiSound }
+        };
+
         FirstDialog();
     }
 
@@ -237,6 +262,12 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     {
         // 초기 위치 설정
         obj.transform.position = startPos;
+
+        // 오브젝트에 할당된 사운드가 있는지 확인하고 재생
+        if (objectSoundMap.TryGetValue(obj, out AudioClip assignedSound))
+        {
+            AudioSource.PlayClipAtPoint(assignedSound, obj.transform.position);
+        }
 
         // 이동 애니메이션 실행
         float elapsedTime = 0f;
