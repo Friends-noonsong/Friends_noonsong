@@ -16,6 +16,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     public Animator noonkyeolAnimator; // noonkyeol 오브젝트의 Animator
     public Animator kkotsongAnimator;  // kkotsong 오브젝트의 Animator
     public Animator noonsongAnimator;  // noonsong 오브젝트의 Animator
+    public Animator turiAnimator;      // turi 오브젝트의 Animator
 
     public GameObject noonDung;  // part1 눈덩이 등장
     public GameObject snowflake; // part2 눈꽃송이 등장
@@ -23,6 +24,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     public GameObject noonkyeol; // part4 눈결이 등장
     public GameObject kkotsong;  // part5 꽃송이 등장
     public GameObject noonsong;  // part6 눈송이 등장
+    public GameObject turi;      // part7 튜리 등장
 
     public Transform arCamera; // AR 카메라 Transform
     public float moveDuration = 2f; // 이동 애니메이션 지속 시간
@@ -166,10 +168,10 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     {
         //(x,y,깊이)
         //StartCoroutine(MoveObject(noonDung, arCamera.TransformPoint(new Vector3(-1.5f, 1.5f, 5f)), arCamera.TransformPoint(new Vector3(0f, -0.4f, 1.5f)))); // 좌측 위 등장
-        //StartCoroutine(MoveObject(snowflake, arCamera.TransformPoint(new Vector3(0f, 2f, 0f)), arCamera.TransformPoint(new Vector3(0f, 1f, 0f)))); // 하늘에서 내려옴
-        //StartCoroutine(MoveObject(roro, arCamera.TransformPoint(new Vector3(0f, 0f, 3f)), arCamera.TransformPoint(new Vector3(0f, 0f, 1f)))); // 멀리서 달려오듯이 등장
-        StartCoroutine(MoveObject(kkotsong, arCamera.TransformPoint(new Vector3(0f, 1f, 3f)), arCamera.TransformPoint(new Vector3(0f, 2f, 3f)))); // 꽃송이가 화면 가운데서 춤 연습중
-        StartCoroutine(MoveObject(noonsong, arCamera.TransformPoint(new Vector3(0f, 0f, 0f)), arCamera.TransformPoint(new Vector3(0f, 0f, 0f)))); // 화면 좌측에서 등장
+        StartCoroutine(MoveObject(snowflake, arCamera.TransformPoint(new Vector3(0.5f, 2f, 0f)), arCamera.TransformPoint(new Vector3(0.5f, -0.5f, 0f)))); // 하늘에서 내려옴
+        StartCoroutine(MoveObject(roro, arCamera.TransformPoint(new Vector3(0f, 1f, 4f)), arCamera.TransformPoint(new Vector3(0f, -0.2f, 1f)))); // 멀리서 달려오듯이 등장
+        //StartCoroutine(MoveObject(kkotsong, arCamera.TransformPoint(new Vector3(0f, -0.5f, 2f)), arCamera.TransformPoint(new Vector3(0f, -0.5f, 2f)))); // 꽃송이가 화면 가운데서 춤 연습중
+        //StartCoroutine(MoveObject(noonsong, arCamera.TransformPoint(new Vector3(-1f, -0.5f, 2f)), arCamera.TransformPoint(new Vector3(0f, -0.5f, 2f)))); // 화면 좌측에서 등장
 
         FirstDialog();
     }
