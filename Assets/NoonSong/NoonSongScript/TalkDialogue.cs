@@ -26,6 +26,8 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     public GameObject noonsong;  // part6 눈송이 등장
     public GameObject turi;      // part7 튜리 등장
 
+    public GameObject ParticlePanel; // ParticlePanel 오브젝트
+
     public Transform arCamera; // AR 카메라 Transform
     public float moveDuration = 2f; // 이동 애니메이션 지속 시간
 
@@ -55,7 +57,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         FirstDialog.Add(new DialogData("/color:black/어디? 어디?", "NoonDung", () => StartCoroutine(MoveObject(snowflake, arCamera.TransformPoint(new Vector3(0f, 2f, 0f)), arCamera.TransformPoint(new Vector3(0f, 0f, 1f))))));
         FirstDialog.Add(new DialogData("/color:black//wait:1/우리는! /wait:0.5/학교를 지키는 어벤져스, /click/눈꽃송이들이야!", "Snowflake", () => ChangeAnimation(noonDungAnimator, "standing")));
         FirstDialog.Add(new DialogData("/color:black/마침 잘 만났다! 얘들아, 이 새송이가 눈송이와 친구가 되고 싶대!", "NoonDung"));
-        FirstDialog.Add(new DialogData("/color:black/그런거라면... 눈송이는 눈의 결정을 좋아하니까, 눈의 결정을 준다면 분명 친구가 될 수 있을 거야", "Snowflake"));
+        FirstDialog.Add(new DialogData("/color:black/그런거라면... 눈송이는 눈의 결정을 좋아하니까, 눈의 결정을 준다면 분명 친구가 될 수 있을 거야", "Snowflake", () => StartCoroutine(ShowPanel())));
         FirstDialog.Add(new DialogData("/color:black/마침 우리한테 꿍쳐놓은 눈의 결정이 있으니까, 너한테 줄게!", "Snowflake", () => ChangeAnimation(snowflakeAnimator1, "standing")));
         FirstDialog.Add(new DialogData("/color:black/어려운 친구를 돕는 것도 우리 일이니까. 우리가 새송이를 도와주는 건 어떨까? /click/(뭉치면 산다!)", "Snowflake"));
         FirstDialog.Add(new DialogData("/color:black/그래, 눈의 결정이라면 우리가 전문이니까, 함께 다니면서 눈의 결정 찾는걸 도와줄게! /click/(맡겨 줘!)", "Snowflake"));
@@ -207,4 +209,19 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         // 정확한 최종 위치로 설정
         obj.transform.position = endPos;
     }
+
+    private IEnumerator ShowPanel()
+    {
+        Time.timeScale = 0f; // 시간 정지
+                             // 패널 활성화
+        ParticlePanel.SetActive(true);
+
+        while (!Input.GetMouseButtonDown(0)) // 마우스 클릭을 기다림
+        {
+            yield return null; // 한 프레임을 대기
+        }
+
+        Time.timeScale = 1f; // 시간 재개
+    }
+
 }
