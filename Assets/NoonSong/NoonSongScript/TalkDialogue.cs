@@ -7,7 +7,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
 {
     public DialogManager DialogManager; // DialogManager 스크립트를 참조해서 함수사용함.
 
-    // 모든 animation들은 standing, fast, mover 가 trigger로 animator에서 전환 가능하게 만듦, 기본 애니메이션은 Idle로 설정함.
+    // 모든 animation들은 standing, fast, move 가 trigger로 animator에서 전환 가능하게 만듦, 기본 애니메이션은 Idle로 설정함.
     public Animator noonDungAnimator;  // NoonDung 오브젝트의 Animator 
     public Animator snowflakeAnimator1; // snowflake1 오브젝트의 Animator
     public Animator snowflakeAnimator2; // snowflake2 오브젝트의 Animator
@@ -64,7 +64,7 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
         FirstDialog.Add(new DialogData("/color:black/네가 눈송이를 찾아 다닌다는 새송이 맞지! 소식을 듣고 한달음에 달려왔어!", "RoRo", () => ChangeAnimation(noonDungAnimator, "standing")));
         FirstDialog.Add(new DialogData("/color:black/로로잖아! 과연 학교의 소식통이라 그런지, 소식이 빠르네!", "NoonDung", () => ChangeAnimation(roroAnimator, "standing")));
         FirstDialog.Add(new DialogData("/color:black//emote:Happy/히히, 1캠퍼스 정문에서 눈송이를 본 것 같다는 걸 알려주려고! 새송이가 누군지 궁금하기도 했고!", "RoRo"));
-        FirstDialog.Add(new DialogData("/color:black//emote:Call/아직 학교 지리는 잘 모르지? 내가 같이 가줄게!", "RoRo"));
+        FirstDialog.Add(new DialogData("/color:black//emote:Call/아직 학교 지리는 잘 모르지? 내가 같이 가줄게!", "RoRo", () => roro.SetActive(false)));
 
         DialogManager.Show(FirstDialog);
     }
@@ -165,11 +165,12 @@ public class TalkDialogue : MonoBehaviour // TalkDialogue는 튜토리얼 전체
     private void Start()
     {
         //(x,y,깊이)
-        StartCoroutine(MoveObject(noonDung, arCamera.TransformPoint(new Vector3(-1.5f, 1.5f, 5f)), arCamera.TransformPoint(new Vector3(0f, -0.4f, 1.5f))));
-        StartCoroutine(MoveObject(snowflake, arCamera.TransformPoint(new Vector3(0f, 2f, 0f)), arCamera.TransformPoint(new Vector3(0f, 0.5f, 0.5f))));
-        StartCoroutine(MoveObject(roro, arCamera.TransformPoint(new Vector3(0f, 0f, 5f)), arCamera.TransformPoint(new Vector3(0f, 0f, 1.5f))));
+        //StartCoroutine(MoveObject(noonDung, arCamera.TransformPoint(new Vector3(-1.5f, 1.5f, 5f)), arCamera.TransformPoint(new Vector3(0f, -0.4f, 1.5f)))); // 좌측 위 등장
+        //StartCoroutine(MoveObject(snowflake, arCamera.TransformPoint(new Vector3(0f, 2f, 0f)), arCamera.TransformPoint(new Vector3(0f, 1f, 0f)))); // 하늘에서 내려옴
+        //StartCoroutine(MoveObject(roro, arCamera.TransformPoint(new Vector3(0f, 0f, 3f)), arCamera.TransformPoint(new Vector3(0f, 0f, 1f)))); // 멀리서 달려오듯이 등장
+        StartCoroutine(MoveObject(kkotsong, arCamera.TransformPoint(new Vector3(0f, 1f, 3f)), arCamera.TransformPoint(new Vector3(0f, 2f, 3f)))); // 꽃송이가 화면 가운데서 춤 연습중
+        StartCoroutine(MoveObject(noonsong, arCamera.TransformPoint(new Vector3(0f, 0f, 0f)), arCamera.TransformPoint(new Vector3(0f, 0f, 0f)))); // 화면 좌측에서 등장
 
-        //
         FirstDialog();
     }
 
