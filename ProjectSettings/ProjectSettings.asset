@@ -972,7 +972,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -992,11 +998,11 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 61d2dbe6-e679-47c7-a24b-00b1345cf8ff
+  cloudProjectId: 5e94a0d8-7752-4c81-a5e2-17567f2cf034
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: AR FD (2)
-  organizationId: jsy00
+  projectName: NoonSongFriendsTest (4)
+  organizationId: unity_2016508
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
