@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//seojin edit test
+
 public class LoginManager : MonoBehaviour
 {
     public GameObject LoginView;
