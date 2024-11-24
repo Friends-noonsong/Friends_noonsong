@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 660911240, guid: f624596d5fe1bd5459a5da424a8abc1b, type: 3}
   m_Name: TheBackendSettings
   m_EditorClassIdentifier: 
-  clientAppID: c2c8e6b0-5267-11ef-b12d-5122b2b046b38080
-  signatureKey: c2c8e6b1-5267-11ef-b12d-5122b2b046b38080
+  clientAppID: 5d6c2030-a626-11ef-af89-fb7bbc270b8d8777
+  signatureKey: 5d6c2031-a626-11ef-af89-fb7bbc270b8d8777
   functionAuthKey: 
-  packageName: com.DefaultCompany.ARFD
+  packageName: com.DefaultCompany.AR-FD
   sendLogReport: 1
   timeOutSec: 100
   Version: 5.12.0
