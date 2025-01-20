@@ -12,9 +12,27 @@ public class BlumingSpawn : MonoBehaviour
     public string nextScene;
 
     private bool locationServiceInitialized = false;
+    private bool iconCreated = false;
 
     [SerializeField]
     private MapManager mapManager;
+
+    [SerializeField]
+    private GameObject confirmationUI;
+
+    [SerializeField]
+    private GameObject interactionIconPrefab;
+
+    [SerializeField]
+    private Transform iconParent;
+
+    [SerializeField]
+    private Image fadeImage;
+
+    [SerializeField]
+    private float fadeDuration = 2f;
+
+    private GameObject interactionIcon;
 
     void Start()
     {
@@ -58,8 +76,8 @@ public class BlumingSpawn : MonoBehaviour
 
         if (IsWithinProximity(currentLatitude, currentLongitude, targetLatitude, targetLongitude) && mapManager.AreAllRegionsUnlocked())
         {
-            Debug.Log("목표 위치에 도달하고 모든 구역이 해금되었습니다. 씬을 전환합니다.");
-            SceneManager.LoadScene(nextScene);
+            Debug.Log("목표 위치에 도달하고 모든 구역이 해금되었습니다.");
+            CreateInteractionIcon();
         }
     }
 
@@ -69,4 +87,58 @@ public class BlumingSpawn : MonoBehaviour
         float lonDifference = Mathf.Abs(currentLon - targetLon);
         return latDifference <= proximityRange && lonDifference <= proximityRange;
     }
+
+    void CreateInteractionIcon()
+    {
+        if (interactionIconPrefab != null && iconParent != null)
+        {
+            interactionIcon = Instantiate(interactionIconPrefab, iconParent);
+            interactionIcon.SetActive(true);
+            interactionIcon.GetComponent<Button>().onClick.AddListener(ShowConfirmationUI);
+            iconCreated = true;
+        }
+    }
+
+    public void ShowConfirmationUI()
+    {
+        if (confirmationUI != null)
+        {
+            confirmationUI.SetActive(true); // UI 활성화
+        }
+    }
+
+    public void OnYesButtonPressed()
+    {
+        Debug.Log("사용자가 YES 버튼을 눌렀습니다. 씬을 전환합니다.");
+        StartCoroutine(FadeOutAndLoadScene());
+    }
+
+    public void OnNoButtonPressed()
+    {
+        Debug.Log("사용자가 NO 버튼을 눌렀습니다. UI를 닫습니다.");
+        if (confirmationUI != null)
+        {
+            confirmationUI.SetActive(false); // UI 비활성화
+        }
+    }
+
+    IEnumerator FadeOutAndLoadScene()
+    {
+        float elapsedTime = 0f;
+        Color color = fadeImage.color;
+        fadeImage.gameObject.SetActive(true);
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = elapsedTime / fadeDuration;
+            fadeImage.color = color;
+            yield return null;
+        }
+        color.a = 1f;
+        fadeImage.color = color;
+
+        SceneManager.LoadScene(nextScene);
+    }
 }
+
